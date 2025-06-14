@@ -1,0 +1,8 @@
+C:\Users\Monster\Desktop\udemy_forms_dersleri\Game-of-Thrones\Game-of-Thrones\bin\Debug\Game-of-Thrones.exe.config
+C:\Users\Monster\Desktop\udemy_forms_dersleri\Game-of-Thrones\Game-of-Thrones\bin\Debug\Game-of-Thrones.exe
+C:\Users\Monster\Desktop\udemy_forms_dersleri\Game-of-Thrones\Game-of-Thrones\bin\Debug\Game-of-Thrones.pdb
+C:\Users\Monster\Desktop\udemy_forms_dersleri\Game-of-Thrones\Game-of-Thrones\obj\Debug\Game-of-Thrones.csproj.AssemblyReference.cache
+C:\Users\Monster\Desktop\udemy_forms_dersleri\Game-of-Thrones\Game-of-Thrones\obj\Debug\Game-of-Thrones.csproj.CoreCompileInputs.cache
+C:\Users\Monster\Desktop\udemy_forms_dersleri\Game-of-Thrones\Game-of-Thrones\obj\Debug\Game-of-Thrones.exe
+C:\Users\Monster\Desktop\udemy_forms_dersleri\Game-of-Thrones\Game-of-Thrones\obj\Debug\Game-of-Thrones.pdb
+C:\Users\Monster\Desktop\udemy_forms_dersleri\Game-of-Thrones\Game-of-Thrones\obj\Debug\Game-of-Thrones.exe.config
