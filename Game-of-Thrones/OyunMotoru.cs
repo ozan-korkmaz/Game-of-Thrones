@@ -14,6 +14,8 @@ namespace Game_of_Thrones
         private EsyaAgaci agac;
         private int ilerlemeSayaci = 0;
         private bool oyunBasladi = false;
+        private string aktifKoy = null;
+        private List<string> kurtarilanKoyler = new List<string>();
 
         public OyunMotoru()
         {
@@ -52,16 +54,17 @@ namespace Game_of_Thrones
             while (!sira.BosMu())
             {
                 string koyAdi = sira.Cikar();
-                Koy aktifKoy = koyler.Find(k => k.Ad == koyAdi);
+                aktifKoy = koyAdi;
+                Koy aktif = koyler.Find(k => k.Ad == koyAdi);
 
                 Console.WriteLine($"\n🔔 {koyAdi} köyündesin.");
 
                 // Eğer bu köyün özel şartı varsa
-                if (aktifKoy.GerekenEsyalar.Count > 0)
+                if (aktif.GerekenEsyalar.Count > 0)
                 {
                     bool eksikVar = false;
 
-                    foreach (var gereken in aktifKoy.GerekenEsyalar)
+                    foreach (var gereken in aktif.GerekenEsyalar)
                     {
                         if (!canta.EsyaKullan(gereken))
                         {
@@ -78,13 +81,15 @@ namespace Game_of_Thrones
                     Console.WriteLine($"✅ Gerekli eşyalar kullanıldı, {koyAdi} kurtarılıyor!");
                 }
 
-                foreach (var esya in aktifKoy.Esyalar)
+                foreach (var esya in aktif.Esyalar)
                 {
                     canta.Ekle(esya);
                 }
 
                 Console.WriteLine("\n🎒 Güncel Çanta Durumu:");
                 canta.Yazdir();
+
+                kurtarilanKoyler.Add(koyAdi);
             }
 
 
@@ -120,20 +125,22 @@ namespace Game_of_Thrones
             if (sira.BosMu())
             {
                 Console.WriteLine("\n🎉 Tüm köyler kurtarıldı!");
+                aktifKoy = null;
                 return;
             }
 
             string koyAdi = sira.Cikar();
-            Koy aktifKoy = koyler.Find(k => k.Ad == koyAdi);
+            aktifKoy = koyAdi;
+            Koy aktif = koyler.Find(k => k.Ad == koyAdi);
 
             Console.WriteLine($"\n🔔 {koyAdi} köyündesin.");
 
             // Gereken eşyalar kontrolü
-            if (aktifKoy.GerekenEsyalar.Count > 0)
+            if (aktif.GerekenEsyalar.Count > 0)
             {
                 bool eksikVar = false;
 
-                foreach (var gereken in aktifKoy.GerekenEsyalar)
+                foreach (var gereken in aktif.GerekenEsyalar)
                 {
                     if (!canta.EsyaKullan(gereken))
                         eksikVar = true;
@@ -148,13 +155,15 @@ namespace Game_of_Thrones
                 Console.WriteLine($"✅ Gerekli eşyalar kullanıldı, {koyAdi} kurtarılıyor!");
             }
 
-            foreach (var esya in aktifKoy.Esyalar)
+            foreach (var esya in aktif.Esyalar)
             {
                 canta.Ekle(esya);
             }
 
             Console.WriteLine("\n🎒 Güncel Çanta Durumu:");
             canta.Yazdir();
+
+            kurtarilanKoyler.Add(koyAdi);
         }
 
         public void EsyaAra(string ad)
@@ -183,6 +192,37 @@ namespace Game_of_Thrones
             {
                 Console.WriteLine("- " + koy.Ad);
             }
+        }
+
+        public void KoyEnvanterleriniGoster()
+        {
+            foreach (var koy in koyler)
+            {
+                Console.WriteLine($"\n{koy.Ad} köyündeki eşyalar:");
+                foreach (var esya in koy.Esyalar)
+                {
+                    Console.WriteLine($"- {esya}");
+                }
+            }
+        }
+
+        public void IlerlemeyiGoster()
+        {
+            Console.WriteLine("\n📊 Kurtarma İlerleme Durumu");
+            Console.WriteLine($"Aktif köy: {(aktifKoy ?? "Yok")}");
+            Console.WriteLine("Kurtarılan köyler:");
+            if (kurtarilanKoyler.Count == 0)
+                Console.WriteLine("- Henüz yok");
+            else
+                kurtarilanKoyler.ForEach(k => Console.WriteLine("- " + k));
+
+            Console.WriteLine("Sıradaki köyler:");
+            sira.Yazdir();
+        }
+
+        public void CantadanCikar()
+        {
+            canta.Cikar();
         }
 
     }

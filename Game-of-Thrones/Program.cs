@@ -16,11 +16,14 @@ namespace Game_of_Thrones
             while (devam)
             {
                 Console.WriteLine("\n--- Game of Thrones Kurtarma Menüsü ---");
-                Console.WriteLine("1 - Köyleri kurtarmaya başla");
+                Console.WriteLine("1 - Bir sonraki köyü kurtar");
                 Console.WriteLine("2 - Çantayı görüntüle");
                 Console.WriteLine("3 - Eşya kullan");
                 Console.WriteLine("4 - Eşya ara (ağaçta)");
                 Console.WriteLine("5 - Oyundaki köyleri listele");
+                Console.WriteLine("6 - Köy envanterlerini göster");
+                Console.WriteLine("7 - İlerlemeyi göster");
+                Console.WriteLine("8 - Çantadan eşya çıkar");
                 Console.WriteLine("0 - Oyunu bitir");
                 Console.Write("Seçiminiz: ");
 
@@ -51,6 +54,18 @@ namespace Game_of_Thrones
 
                     case "5":
                         oyun.KoyleriListele();
+                        break;
+
+                    case "6":
+                        oyun.KoyEnvanterleriniGoster();
+                        break;
+
+                    case "7":
+                        oyun.IlerlemeyiGoster();
+                        break;
+
+                    case "8":
+                        oyun.CantadanCikar();
                         break;
 
                     case "0":
