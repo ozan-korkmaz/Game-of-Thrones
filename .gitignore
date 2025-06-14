@@ -1,0 +1,10 @@
+# Visual Studio folder
+.vs/
+
+# Build output directories
+bin/
+obj/
+
+# Executables and debugging files
+*.exe
+*.pdb
